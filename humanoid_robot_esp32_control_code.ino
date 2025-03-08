@@ -41,7 +41,7 @@ void setup()
 {
   // For Communication with computer
   Serial.begin(115200);
-  Serial.println("Welcome to Enhanced Humanoid Robot Project!");
+  // Serial.println("Welcome to Enhanced Humanoid Robot Project!");
   // Function to setup wifi connection.
   setupWifi();
   // Initializing the web socket client
@@ -52,6 +52,7 @@ void setup()
   webSocket.setReconnectInterval(5000);
   // For I2C communication begining
   Wire.begin();
+  Wire.beginTransmission(i2cAddress);
 
   // initializing other servos
   initializeOtherServos();
@@ -206,7 +207,7 @@ void runWithPayload(uint8_t *payload, size_t length)
   {
     float doc10 = doc["10"];
     Serial.println(doc10);
-    robotSimulation.moveToServerFrame(doc["0"], doc["1"], doc["2"], doc["3"], doc["4"], doc["5"], doc["6"], doc["7"], doc["8"], doc["9"], doc["10"], doc["11"], doc["12"], doc["13"], doc["14"], doc["15"], doc["16"], doc["17"], doc["18"], doc["19"], doc["20"]);
+    robotSimulation.moveToServerFrame(doc["0"], doc["1"], doc["2"], doc["3"], doc["4"], doc["5"], doc["6"], doc["7"], doc["8"], doc["9"], doc["10"], doc["11"], doc["12"], doc["13"], doc["14"], doc["15"], doc["16"], doc["17"], doc["18"], doc["19"]);
   }
   // if (key != nullptr) {
   //     Serial.printf("The motor %s is to be moved to %d angle\n", motor, value);

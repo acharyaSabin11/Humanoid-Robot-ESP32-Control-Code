@@ -7,7 +7,7 @@ class Robot
     float rightShoulderPitchValue, rightShoulderRollValue, rightArmValue;
     float leftHipYawValue, leftHipPitchValue, leftHipRollValue, leftKneeValue, leftAnkleValue, leftFootValue;
     float rightHipYawValue, rightHipPitchValue, rightHipRollValue, rightKneeValue, rightAnkleValue, rightFootValue;
-    float headValue, torsoValue;
+    float headValue;
 
 public:
     // Default Constructor
@@ -15,7 +15,7 @@ public:
     {
     }
 
-    Robot(float rightShoulderPitch, float rightShoulderRoll, float rightArm, float leftShoulderPitch, float leftShoulderRoll, float leftArm, float rightHipYaw, float rightHipRoll, float rightHipPitch, float rightKnee, float rightAnkle, float rightFoot, float leftHipYaw, float leftHipRoll, float leftHipPitch, float leftKnee, float leftAnkle, float leftFoot, float head, float torso)
+    Robot(float rightShoulderPitch, float rightShoulderRoll, float rightArm, float leftShoulderPitch, float leftShoulderRoll, float leftArm, float rightHipYaw, float rightHipRoll, float rightHipPitch, float rightKnee, float rightAnkle, float rightFoot, float leftHipYaw, float leftHipRoll, float leftHipPitch, float leftKnee, float leftAnkle, float leftFoot, float head)
     {
         // Left Arm
         this->leftShoulderPitchValue = leftShoulderPitch;
@@ -39,9 +39,8 @@ public:
         this->rightKneeValue = rightKnee;
         this->rightAnkleValue = rightAnkle;
         this->rightFootValue = rightFoot;
-        // Head and Torso
+        // Head
         this->headValue = head;
-        this->torsoValue = torso;
     }
 
     // Constructor Overloading
@@ -74,9 +73,8 @@ public:
         this->leftAnkleValue = angleData[16];
         this->leftFootValue = angleData[17];
 
-        // Head and Torso
+        // Head
         this->headValue = angleData[18];
-        this->torsoValue = angleData[19];
     }
 
     // Getters
@@ -174,14 +172,9 @@ public:
     {
         return (this->rightFootValue * rightFootMotorDirection) + rightFootMotorOffset;
     }
-    // Head and Torso
+    // Head
     float head()
     {
         return (this->headValue * headMotorDirection) + headMotorOffset;
-    }
-
-    float torso()
-    {
-        return (this->torsoValue * torsoMotorDirection) + torsoMotorOffset;
     }
 };

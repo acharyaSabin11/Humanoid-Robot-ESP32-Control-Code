@@ -7,48 +7,67 @@ unsigned char i2cAddress = 128; // compatible to byte datatype of arduino
 #define stepTime 50 // milliseconds
 
 // Defining Motor Positions on the LU9685-20CU i.e. Define where each motor is connected to in the servo controller.
-#define rightHipYawMotor 0
-#define rightHipRollMotor 1
-#define rightHipPitchMotor 2
-#define rightKneeMotor 3
-#define rightAnkleMotor 4
-#define rightFootMotor 5
-#define leftHipYawMotor 6
-#define leftHipRollMotor 7
-#define leftHipPitchMotor 8
-#define leftKneeMotor 9
-#define leftAnkleMotor 10
-#define leftFootMotor 11
-#define rightShoulderPitchMotor 12
-#define leftShoulderPitchMotor 13
-#define rightShoulderRollMotor 14
-#define leftShoulderRollMotor 15
-#define rightArmMotor 16
-#define leftArmMotor 17
-#define torsoMotor 18
-#define headMotor 19
+#define rightHipYawMotor 15
+#define rightHipRollMotor 2
+#define rightHipPitchMotor 4
+#define rightKneeMotor 5
+#define rightAnkleMotor 18
+#define rightFootMotor 19
+#define leftHipYawMotor 33
+#define leftHipRollMotor 25
+#define leftHipPitchMotor 26
+#define leftKneeMotor 27
+#define leftAnkleMotor 14
+#define leftFootMotor 12
+#define rightArmMotor 80
+#define leftArmMotor 90
+#define rightShoulderRollMotor 60
+#define leftShoulderRollMotor 70
+#define rightShoulderPitchMotor 40
+#define leftShoulderPitchMotor 50
+#define headMotor 23
 
 // Defining the Fixed Offset of motor to reach the initial position.
-#define rightHipYawMotorOffset 84
-#define rightHipRollMotorOffset 72
-#define rightHipPitchMotorOffset 90
-#define rightKneeMotorOffset 90
-#define rightAnkleMotorOffset 136
-#define rightFootMotorOffset 94
-#define leftHipYawMotorOffset 80
-#define leftHipRollMotorOffset 97
+// #define rightHipYawMotorOffset 94
+// #define rightHipRollMotorOffset 90
+// #define rightHipPitchMotorOffset 90
+// #define rightKneeMotorOffset 119
+// #define rightAnkleMotorOffset 105
+// #define rightFootMotorOffset 85
+// #define leftHipYawMotorOffset 92
+// #define leftHipRollMotorOffset 92
+// #define leftHipPitchMotorOffset 99
+// #define leftKneeMotorOffset 70
+// #define leftAnkleMotorOffset 81
+// #define leftFootMotorOffset 86
+// #define rightShoulderRollMotorOffset 65
+// #define leftShoulderRollMotorOffset 105
+// #define rightShoulderPitchMotorOffset 37
+// #define leftShoulderPitchMotorOffset 135
+// #define rightArmMotorOffset 90
+// #define leftArmMotorOffset 83
+// #define headMotorOffset 90 // Set randomly for now
+
+#define rightHipYawMotorOffset 100
+#define rightHipRollMotorOffset 90
+#define rightHipPitchMotorOffset 101
+#define rightKneeMotorOffset 92
+#define rightAnkleMotorOffset 73
+#define rightFootMotorOffset 85
+#define leftHipYawMotorOffset 92
+#define leftHipRollMotorOffset 92
 #define leftHipPitchMotorOffset 95
-#define leftKneeMotorOffset 74
-#define leftAnkleMotorOffset 130
+#define leftKneeMotorOffset 84
+#define leftAnkleMotorOffset 97
 #define leftFootMotorOffset 86
-#define rightShoulderPitchMotorOffset 90
-#define leftShoulderPitchMotorOffset 90
-#define rightShoulderRollMotorOffset 90
-#define leftShoulderRollMotorOffset 49
+#define rightShoulderRollMotorOffset 65
+#define leftShoulderRollMotorOffset 105
+#define rightShoulderPitchMotorOffset 37
+#define leftShoulderPitchMotorOffset 135
 #define rightArmMotorOffset 90
-#define leftArmMotorOffset 90
-#define torsoMotorOffset 90 // Set randomly for now
-#define headMotorOffset 90  // Set randomly for now
+#define leftArmMotorOffset 83
+#define headMotorOffset 90
+
 
 // Setting Direction to match the values directly from the simulation
 #define rightHipYawMotorDirection -1       // Set Randomly for now
@@ -69,5 +88,4 @@ unsigned char i2cAddress = 128; // compatible to byte datatype of arduino
 #define leftShoulderRollMotorDirection -1  // Set Randomly for now
 #define rightArmMotorDirection 1           // Set Randomly for now
 #define leftArmMotorDirection 1            // Set Randomly for now
-#define torsoMotorDirection 1              // Set Randomly for now
 #define headMotorDirection 1               // Set randomly for now

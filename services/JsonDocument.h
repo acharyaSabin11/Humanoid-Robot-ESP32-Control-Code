@@ -15,7 +15,6 @@ namespace WSData
         docRobotSimulation["LeftShoulderPitch"] = 0.0;
         docRobotSimulation["LeftShoulderRoll"] = 0.0;
         docRobotSimulation["LeftArm"] = 0.0;
-        docRobotSimulation["Torso"] = 0.0;
         docRobotSimulation["RightHipYaw"] = 0.0;
         docRobotSimulation["RightHipRoll"] = 0.0;
         docRobotSimulation["RightHipPitch"] = 0.0;

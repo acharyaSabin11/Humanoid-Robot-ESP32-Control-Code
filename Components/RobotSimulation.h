@@ -21,14 +21,14 @@ class RobotSimulation
          10.0, -35.0, 0.0,
          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
          0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-         0.0, 0.0},
+         0.0},
 
         // Frame 1
         {10.0, 35.0, 0.0,
          10.0, -35.0, 0.0,
          0.0, 10.0, 0.0, 0.0, 0.0, -12.0,
          0.0, 10.0, 0.0, 0.0, 0.0, -12.0,
-         0.0, 0.0},
+         0.0},
 
         // {10.0, 35.0, 0.0,
         //  10.0, -35.0, 0.0,
@@ -40,14 +40,14 @@ class RobotSimulation
          10.0, -35.0, 0.0,
          0.0, -10.0, 26.8, -60.5, 29.4, -12.0,
          0.0, -10.0, 0.0, 0.0, 0.0, -14.0,
-         0.0, 0.0},
+         0.0},
 
         // Frame 3
         {10.0, 35.0, 0.0,
          10.0, -35.0, 0.0,
          0.0, 13.0, 38.5, -40.2, 2.7, -10.2,
          0.0, 12.0, 0.0, 0.0, 0.0, -10.5,
-         0.0, 0.0},
+         0.0},
         // {10.0, 35.0, 0.0,
         //  10.0, -35.0, 0.0,
         //  0.0, 13.0, 38.5, -40.2, 2.7, -10.2,
@@ -59,14 +59,14 @@ class RobotSimulation
          10.0, -35.0, 0.0,
          0.0, 18.0, 25.5, -22.8, 9.6, 12.0,
          0.0, 10.0, 40.5, -16.5, 22.7, 30.0,
-         0.0, 0.0},
+         0.0},
 
         // Frame 5
         {10.0, 35.0, 0.0,
          10.0, -35.0, 0.0,
          0.0, -8.0, 0.0, 0.0, 0.0, 12.0,
          0.0, -13.0, 4.8, -60.5, 29.4, 12.0,
-         0.0, 0.0},
+         0.0},
 
         {10.0, 35.0, 0.0,
          10.0, -35.0, 0.0,
@@ -78,15 +78,15 @@ class RobotSimulation
          10.0, -35.0, 0.0,
          0.0, 8.0, 1.5, -16.5, 22.7, -10.0,
          0.0, 8.0, 25.5, -29.8, 9.6, -10.0,
-         0.0, 0.0}};
+         0.0}};
 
     // Step 2: Create a Robot Object Holding the Current State;
-    Robot currentRobotState = Robot(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+    Robot currentRobotState = Robot(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
 public:
-    void moveToServerFrame(float rightShoulderPitch, float rightShoulderRoll, float rightArm, float leftShoulderPitch, float leftShoulderRoll, float leftArm, float rightHipYaw, float rightHipRoll, float rightHipPitch, float rightKnee, float rightAnkle, float rightFoot, float leftHipYaw, float leftHipRoll, float leftHipPitch, float leftKnee, float leftAnkle, float leftFoot, float head, float torso, float time)
+    void moveToServerFrame(float rightShoulderPitch, float rightShoulderRoll, float rightArm, float leftShoulderPitch, float leftShoulderRoll, float leftArm, float rightHipYaw, float rightHipRoll, float rightHipPitch, float rightKnee, float rightAnkle, float rightFoot, float leftHipYaw, float leftHipRoll, float leftHipPitch, float leftKnee, float leftAnkle, float leftFoot, float head, float time)
     {
-        Robot nextRobotState = Robot(rightShoulderPitch, rightShoulderRoll, rightArm, leftShoulderPitch, leftShoulderRoll, leftArm, rightHipYaw, rightHipRoll, rightHipPitch, rightKnee, rightAnkle, rightFoot, leftHipYaw, leftHipRoll, leftHipPitch, leftKnee, leftAnkle, leftFoot, head, torso);
+        Robot nextRobotState = Robot(rightShoulderPitch, rightShoulderRoll, rightArm, leftShoulderPitch, leftShoulderRoll, leftArm, rightHipYaw, rightHipRoll, rightHipPitch, rightKnee, rightAnkle, rightFoot, leftHipYaw, leftHipRoll, leftHipPitch, leftKnee, leftAnkle, leftFoot, head);
 
         float numIter = time * 1000 / stepTime;
 
@@ -114,7 +114,6 @@ public:
         float rightFootStep = (nextRobotState.rightFoot() - currentRobotState.rightFoot()) / numIter;
 
         float headStep = (nextRobotState.head() - currentRobotState.head()) / numIter;
-        float torsoStep = (nextRobotState.torso() - currentRobotState.torso()) / numIter;
 
         for (int j = 1; j <= numIter; j++)
         {
@@ -181,16 +180,13 @@ public:
             moveStep(headMotor, static_cast<int>(currentRobotState.head() + headStep * j));
             WSData::docRobotSimulation["Head"] = currentRobotState.head() + headStep * j;
 
-            moveStep(torsoMotor, static_cast<int>(currentRobotState.torso() + torsoStep * j));
-            WSData::docRobotSimulation["Torso"] = currentRobotState.torso() + torsoStep * j;
-
             Serial.println("Serializing JSON data");
             serializeJson(WSData::docRobotSimulation, WSData::serializedData);
             Serial.println(WSData::serializedData);
             Serial.println("Serialized JSON data");
             webSocket.sendTXT(WSData::serializedData);
             Serial.println("JSON data Sent");
-            delay(stepTime - 30);
+            delay(stepTime - 35);
         }
 
         currentRobotState = nextRobotState;
@@ -251,7 +247,6 @@ public:
         float rightFootStep = (nextRobotState.rightFoot() - currentRobotState.rightFoot()) / numIter;
 
         float headStep = (nextRobotState.head() - currentRobotState.head()) / numIter;
-        float torsoStep = (nextRobotState.torso() - currentRobotState.torso()) / numIter;
 
         for (int j = 1; j <= numIter; j++)
         {
@@ -317,9 +312,6 @@ public:
             // Move and update for Head and Torso
             moveStep(headMotor, static_cast<int>(currentRobotState.head() + headStep * j));
             WSData::docRobotSimulation["Head"] = currentRobotState.head() + headStep * j;
-
-            moveStep(torsoMotor, static_cast<int>(currentRobotState.torso() + torsoStep * j));
-            WSData::docRobotSimulation["Torso"] = currentRobotState.torso() + torsoStep * j;
 
             Serial.println("Serializing JSON data");
             serializeJson(WSData::docRobotSimulation, WSData::serializedData);
